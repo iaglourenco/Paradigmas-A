@@ -4,55 +4,55 @@
 #include <string.h>
 #include <windows.h>
 
-struct TipoAluno //struct Aluno
+typedef struct  //struct Aluno
 {
 	char nome[50];
 	int  ra;
-};
+}TipoAluno;
 
-struct TgerenciaAlu //struct para Gerenciar o numero de ALunos
+typedef struct  //struct para Gerenciar o numero de ALunos
 {
 	TipoAluno aluno[10];
 	int    numAlu;
-};
+}TgerenciaAlu;
 
-struct TipoProfessor //struct Professor
+typedef struct  //struct Professor
 {
 	char nome[50];
 	int codProfessor;
-};
+}TipoProfessor;
 
-struct TgerenciaProf //struct para Gerenciar o numero de professores
+typedef struct  //struct para Gerenciar o numero de professores
 {
 	TipoProfessor professor[10];
 	int numProf;
-};
+}TgerenciaProf;
 
-struct TipoDisciplina //struct Disciplina
+typedef struct  //struct Disciplina
 {
 	char nome[50];
 	int codDisciplina;
-};
+}TipoDisciplina;
 
-struct TgerenciaDisc //struct para Gerenciar o numero de disciplinas
+typedef struct  //struct para Gerenciar o numero de disciplinas
 {
 	TipoDisciplina disciplina[10];
 	int numDisc;
-};
+}TgerenciaDisc;
 
-struct Matricular1 //struct para guardar dados da matricula do aluno
+typedef struct  //struct para guardar dados da matricula do aluno
 {
 	int ra;
 	int codDisc1;
-};
+}Matricular1;
 
-struct Matricular2 //struct para guardar dados da matricula do professor
+typedef struct  //struct para guardar dados da matricula do professor
 {
 	int codProf;
 	int codDisc2;
-};
+}Matricular2;
 
-struct TgerenciaMatricula //struct para gerenciar as matriculas
+typedef struct  //struct para gerenciar as matriculas
 {
 	TgerenciaDisc disciplinas[10];
 	TgerenciaAlu alunos[10];
@@ -62,7 +62,7 @@ struct TgerenciaMatricula //struct para gerenciar as matriculas
 	int guardaRA[10];
 	int guardaCodDisc[10];
 	int guardaCodProf[10];
-};
+}TgerenciaMatricula;
 
 TgerenciaAlu cadastroAlu(TgerenciaAlu gerenciaA); //funcao para cadastro de alunos
 TgerenciaAlu exibirAlunos(TgerenciaAlu gerenciaAlunos); //funcao para exibir alunos cadastrados no sistema
@@ -76,7 +76,7 @@ TgerenciaProf exibirProf(TgerenciaProf gerenciaProfessor); //funcao para exibir 
 TgerenciaMatricula matriculaAlu(TgerenciaMatricula gerenciaMatri, TgerenciaAlu alu, TgerenciaDisc disc); //funcao para matricula de aluno
 TgerenciaMatricula exibirMatriculaAlu(TgerenciaMatricula gerenciaMatricula, TgerenciaAlu aluno, TgerenciaDisc disciplina); //funcao para exibir matriculas de alunos em disciplinas
 
-TgerenciaMatricula exibirMatriculaDiscAlu(TgerenciaMatricula gerenciaMatricula, TgerenciaAlu aluno, TgerenciaDisc disciplina); //funcao para exibir matriculas de alunos nas disciplinas 
+TgerenciaMatricula exibirMatriculaDiscAlu(TgerenciaMatricula gerenciaMatricula, TgerenciaAlu aluno, TgerenciaDisc disciplina); //funcao para exibir matriculas de alunos nas disciplinas
 TgerenciaMatricula exibirMatriculaDiscProf(TgerenciaMatricula gerenciaMatricula, TgerenciaProf professor, TgerenciaDisc disciplina); //funcao para exibir matriculas de professores em disciplinas
 
 TgerenciaMatricula matriculaProf(TgerenciaMatricula gerenciaMatri, TgerenciaProf prof, TgerenciaDisc disc); //funcao para matricula de professor
@@ -86,7 +86,7 @@ TgerenciaMatricula CancelaMatricula(TgerenciaMatricula gerenciaMatricula); //fun
 
 void main()
 {
-	//declaração de variaveis para as structs
+	//declaraï¿½ï¿½o de variaveis para as structs
 	TgerenciaAlu gerenciaA;
 	TgerenciaDisc gerenciaD;
 	TgerenciaProf gerenciaP;
