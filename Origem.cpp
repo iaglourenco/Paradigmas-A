@@ -114,23 +114,23 @@ int main() {
 
 	do {
 		system("cls");
-		printf("\t<PROJETO EM C [SISTEMA ACADEMICO]>");
-		printf("\n\n1 - <Cadastrar Aluno>");//ok
-		printf("\n2 - <Cadastrar Disciplina>");//ok
-		printf("\n3 - <Cadastrar Professor>");//ok
-		printf("\n4 - <Realizar Matricula>");//ok
-		printf("\n5 - <Cancelar Matricula>");
-		printf("\n6 - <Vincular professores a disciplinas>");
-		printf("\n7 - <Remover vinculo de professores a disciplinas>");
-		printf("\n8 - <Imprimir a lista de alunos>");//ok
-		printf("\n9 - <Imprimir a lista de disciplinas>");//ok
+		printf("\t<PROJETO EM C [SISTEMA ACADEMICO]>\n");
+		printf("\n1  - <Cadastrar Aluno>");//ok
+		printf("\n2  - <Cadastrar Disciplina>");//ok
+		printf("\n3  - <Cadastrar Professor>");//ok
+		printf("\n4  - <Realizar Matricula>");//ok
+		printf("\n5  - <Cancelar Matricula>");
+		printf("\n6  - <Vincular professores a disciplinas>");
+		printf("\n7  - <Remover vinculo de professores a disciplinas>");
+		printf("\n8  - <Imprimir a lista de alunos>");//ok
+		printf("\n9  - <Imprimir a lista de disciplinas>");//ok
 		printf("\n10 - <Imprimir a lista de professores>");//ok
 		printf("\n11 - <Imprimir a lista de disciplinas de um aluno>");//ok
 		printf("\n12 - <Imprimir a lista de alunos em uma disciplina e turma>");//ok
 		printf("\n13 - <Imprimir a lista de alunos em uma disciplina, independente da turma>");
 		printf("\n14 - <Imprimir a lista de todas as disciplinas ministradas por um professor (independente de turma)>");
 		printf("\n15 - <Imprimir a lista de todos os professores vinculados a uma disciplina (independente de turma)>");
-		printf("\n0 - <Sair>\n>>>");
+		printf("\n0  - <Sair>\n>>>");
 		fflush(stdin);
 		scanf("%i", &opcao);
 		system("cls");
@@ -138,7 +138,7 @@ int main() {
 
 
 		case 1://cadastro alunos
-
+			printf("\t\tCadastrar alunos\n\n");
 			if (contador.qAlunos == MAX_ALUNO) {
 				printf("MAXIMO DE ALUNOS ATINGIDO!\n");
 				system("pause");
@@ -156,7 +156,7 @@ int main() {
 			break;
 
 		case 2://cadastrar disciplina
-
+			printf("\t\tCadastrar disciplinas\n\n");
 			if (contador.qDisc == MAX_DISC) {
 				printf("MAXIMO DE DISCIPLINAS ATINGIDO!\n");
 				system("pause");
@@ -181,6 +181,7 @@ int main() {
 			break;
 
 		case 3://cadastro professores
+			printf("\t\tCadastrar professores\n\n");
 
 			if (contador.qProfs == MAX_PROF) {
 				printf("MAXIMO DE PROFESSORES ATINGIDO!\n");
@@ -287,12 +288,12 @@ int main() {
 			break;
 
 		case 8://imprimir todos alunos
-			printf("Todos alunos\n\nNome          RA\tAlunos cadastrados=%i\n", contador.qAlunos);
+			printf("\t\tImprimir todos os alunos\n\nNome	RA\tAlunos cadastrados=%i\n", contador.qAlunos);
 			for (i = 0; i < MAX_ALUNO; i++) {
 
 				if (alunos[i].empty == 0) {//false
 
-					printf("%s        %i\n", alunos[i].nome, alunos[i].ra);
+					printf("%-s	%-i\n", alunos[i].nome, alunos[i].ra);
 				}
 			}
 			printf("\n");
@@ -300,11 +301,11 @@ int main() {
 
 			break;
 		case 9://imprimir todas as disciplinas
-			printf("Todas as disciplinas\n\tDisciplinas cadastradas=%i\nNome\n", contador.qDisc);
+			printf("\t\tImprimir todas as disciplinas\n\n\tDisciplinas cadastradas=%i\nNome\n", contador.qDisc);
 			for (i = 0; i < MAX_DISC; i++) {
 
 				if (disc1[i].empty == 0) {//false
-					printf("%s\n", disc1[i].nome);
+					printf("%-s\n", disc1[i].nome);
 				}
 			}
 			printf("\n");
@@ -312,12 +313,13 @@ int main() {
 
 			break;
 		case 10://imprimir todos professores
-			printf("Todos os professores\n\tProfessores cadastrados=%i\nNome          RP\n", contador.qProfs);
+			printf("\t\tImprimir todos os professores\n\n");
+			printf("Todos os professores\n\tProfessores cadastrados=%i\nNome	RP\n", contador.qProfs);
 			for (i = 0; i < MAX_PROF; i++) {
 
 				if (profs[i].empty == 0) {//false
 
-					printf("%s        %i\n", profs[i].nome, profs[i].rp);
+					printf("%-s	%-i\n", profs[i].nome, profs[i].rp);
 				}
 			}
 			printf("\n");
@@ -325,11 +327,11 @@ int main() {
 			break;
 		case 11://Imprimir a lista de disciplinas de um aluno
 
-
+			printf("\t\tImprimir a lista de disciplinas de um aluno\n\n");
 			printf("Digite o RA do aluno:\n>>");
 			scanf("%i", &opcao);
 
-			printf("Nome da disciplina\n\n");
+			printf("Nome		Turma\n\n");
 			for (i = 0; i < MAX_DISC; i++) {
 
 				if (disc1[i].empty == 0) {
@@ -337,7 +339,22 @@ int main() {
 
 						if (disc1[i].alunos[j].empty == 0) {
 							if (disc1[i].alunos[j].ra == opcao) {
-								printf("%s\n", disc1[i].nome);
+								printf("%-s		%-s\n", disc1[i].nome,"T1");
+
+							}
+						}
+					}
+
+				}
+			}
+			for (i = 0; i < MAX_DISC; i++) {
+
+				if (disc2[i].empty == 0) {
+					for (j = 0; j < MAX_ALUNO_DISC; j++) {
+
+						if (disc2[i].alunos[j].empty == 0) {
+							if (disc2[i].alunos[j].ra == opcao) {
+								printf("%-s		%-s\n", disc2[i].nome,"T2");
 
 							}
 						}
@@ -349,7 +366,7 @@ int main() {
 			system("pause");
 			break;
 		case 12://Imprimir a lista de alunos em uma disciplina e turma
-
+			printf("\t\tImprimir a lista de alunos em uma disciplina e turma\n\n");
 			if (disc1[0].empty != 0) {
 				printf("Sem disciplinas cadastradas\n");
 				system("pause");
@@ -359,7 +376,7 @@ int main() {
 			printf("#		Nome\n\n");
 			for (i = 0; i < MAX_DISC; i++) {
 				if (disc1[i].empty == 0) {
-					printf("%i	-	%s\n", i, disc1[i].nome);
+					printf("%-i	-	%-s\n", i, disc1[i].nome);
 				}
 			}
 			printf("\nEscolha a disciplina:\n>>");
@@ -377,21 +394,23 @@ int main() {
 			switch (op3) {
 
 			case 1:
+				printf("\n\nTurma 1\n\n");
 				printf("Nome		RA\n\n");
 				for (j = 0; j < MAX_ALUNO_DISC; j++) {
 					if (disc1[op2].alunos[j].empty == 0) {
 
-						printf("%s		%i\n", disc1[op2].alunos[j].nome, disc1[op2].alunos[j].ra);
+						printf("%-s		%-i\n", disc1[op2].alunos[j].nome, disc1[op2].alunos[j].ra);
 
 					}
 				}
 				break;
 			case 2:
+				printf("\n\nTurma 2\n\n");
 				printf("Nome		RA\n\n");
 				for (j = 0; j < MAX_ALUNO_DISC; j++) {
 					if (disc2[op2].alunos[j].empty == 0) {
 
-						printf("%s		%i\n", disc2[op2].alunos[j].nome, disc2[op2].alunos[j].ra);
+						printf("%-s		%-i\n", disc2[op2].alunos[j].nome, disc2[op2].alunos[j].ra);
 
 					}
 				}
@@ -407,6 +426,7 @@ int main() {
 
 			break;
 		case 13://Imprimir a lista de alunos em uma disciplina, independente da turma>");
+			printf("\t\tImprimir a lista de alunos em uma disciplina, independente da turma>\n\n");
 			if (disc1[0].empty != 0) {
 				printf("Sem disciplinas cadastradas\n");
 				system("pause");
@@ -416,7 +436,7 @@ int main() {
 			printf("#		Nome\n\n");
 			for (i = 0; i < MAX_DISC; i++) {
 				if (disc1[i].empty == 0) {
-					printf("%i	-	%s\n", i, disc1[i].nome);
+					printf("%-i	-	%-s\n", i, disc1[i].nome);
 				}
 			}
 			printf("\nEscolha a disciplina:\n>>");
@@ -430,12 +450,12 @@ int main() {
 			for (j = 0; j < MAX_ALUNO_DISC; j++) {
 				if (disc1[op2].alunos[j].empty == 0) {
 
-					printf("%s		%i\n", disc1[op2].alunos[j].nome, disc1[op2].alunos[j].ra);
+					printf("%-s		%-i	\n", disc1[op2].alunos[j].nome, disc1[op2].alunos[j].ra);
 
 				}
 				if (disc2[op2].alunos[j].empty == 0) {
 
-					printf("%s		%i\n", disc2[op2].alunos[j].nome, disc2[op2].alunos[j].ra);
+					printf("%-s		%-i	\n", disc2[op2].alunos[j].nome, disc2[op2].alunos[j].ra);
 
 				}
 			}
@@ -445,18 +465,18 @@ int main() {
 			system("pause");
 
 			break;
-		case 14://Imprimir a lista de todas as disciplinas ministradas por um professor (independente de turma)
-
-			printf("Nome		Nome professor\n\n");
+		case 14://Imprimir a lista de todas as disciplinas ministradas por um professor, independente de turma
+			printf("\t\tImprimir a lista de todas as disciplinas ministradas por um professor, independente de turma\n\n");
+			printf("Nome disciplina		Nome professor\n\n");
 			for (j = 0; j < MAX_DISC; j++) {
 				if (disc1[j].prof.empty == 0) {
 
-					printf("%s		%s\n", disc1[j].nome,disc1[j].prof.nome);
+					printf("%-s             	%-s	\n", disc1[j].nome,disc1[j].prof.nome);
 
 				}
 				if (disc2[j].prof.empty == 0) {
 
-					printf("%s		%s\n", disc2[j].nome, disc2[j].prof.nome);
+					printf("%-s             	%-s	\n", disc2[j].nome, disc2[j].prof.nome);
 
 				}
 			}
@@ -466,17 +486,18 @@ int main() {
 
 
 			break;
-		case 15://Imprimir a lista de todos os professores vinculados a uma disciplina (independente de turma)
-			printf("Nome professor		RP		Nome disciplina		\n\n");
+		case 15://Imprimir a lista de todos os professores vinculados a uma disciplina, independente de turma)
+			printf("\t\tImprimir a lista de todos os professores vinculados a uma disciplina, independente de turma\n\n");
+			printf("Nome		RP		Nome disciplina		Turma\n\n");
 			for (j = 0; j < MAX_DISC; j++) {
 				if (disc1[j].prof.empty == 0) {
 
-					printf("%s		%i		%s\n", disc1[j].prof.nome, disc1[j].prof.rp, disc1[j].nome);
+					printf("%-s		%-i		%-s                      %-s\n", disc1[j].prof.nome, disc1[j].prof.rp, disc1[j].nome,"T1");
 
 				}
 				if (disc2[j].prof.empty == 0) {
 
-					printf("%s		%i		%s\n", disc2[j].prof.nome, disc1[j].prof.rp, disc2[j].nome);
+					printf("%-s		%-i		%-s                      %-s\n", disc2[j].prof.nome, disc1[j].prof.rp, disc2[j].nome,"T2");
 
 				}
 			}
@@ -488,6 +509,9 @@ int main() {
 			break;
 
 		case 0:
+			printf("Feito por: Iago Lourenco --> github\\@iaglourenco\n\nPressione qualquer teclar para sair...");
+			system("pause>nul");
+
 			break;
 
 		default:
@@ -580,7 +604,7 @@ int matriculaAluno(Disciplina *disc,Aluno alunos[], Contador *contador) {
 	do {
 		system("cls");
 		printf("Escolha os alunos a matricular:\tqtd de alunos selecionados = %i\n\n", contaAlunos);
-		printf("#		Nome	RA\n");
+		printf("#        Nome	RA\n");
 		for (i = 0; i < MAX_ALUNO; i++) {
 			if (alunos[i].empty == 0) {//false
 
@@ -593,7 +617,7 @@ int matriculaAluno(Disciplina *disc,Aluno alunos[], Contador *contador) {
 				}
 
 				if (alunos[i].empty == 0 && jaCadastrado != 1)
-					printf("%i	-	%s	%i\n", i, alunos[i].nome, alunos[i].ra);
+					printf("%-i------- %-s	%-i\n", i, alunos[i].nome, alunos[i].ra);
 				jaCadastrado = 0;
 				
 			
@@ -633,7 +657,7 @@ int matriculaAluno(Disciplina *disc,Aluno alunos[], Contador *contador) {
 		jaCadastrado = 0;
 		system("cls");
 		printf("Escolha as disciplinas a matricular os alunos:\tqtd de disciplinas selecionadas = %i\n\n", contaDisc);
-		printf("#		Nome\n");
+		printf("#        Nome\n");
 		for (i = 0; i < MAX_DISC; i++) {
 			if (disc[i].empty == 0) {//false
 
@@ -644,7 +668,7 @@ int matriculaAluno(Disciplina *disc,Aluno alunos[], Contador *contador) {
 					}
 				}
 				if(disc[i].empty == 0 && jaCadastrado != 1)
-					printf("%i	-	%s\n", i, disc[i].nome);
+					printf("%-i-------- %-s\n", i, disc[i].nome);
 				jaCadastrado = 0;
 			}
 		}
@@ -683,11 +707,11 @@ int matriculaAluno(Disciplina *disc,Aluno alunos[], Contador *contador) {
 	system("cls");
 	printf("Sera efetuada a matricula deste(s) aluno(s):\n\n");
 	for (i = 0; i < contaAlunos; i++) {
-		printf("%s		%i\n", alunosMatricula[i].nome, alunosMatricula[i].ra);
+		printf("%-s----%-i\n", alunosMatricula[i].nome, alunosMatricula[i].ra);
 	}
 	printf("\nNessa(s) disciplinas(s)\n\n");
 	for (i = 0; i < contaDisc; i++) {
-		printf("%s\n", discMatricula[i].nome);
+		printf("%-s\n", discMatricula[i].nome);
 	}
 	printf("\nConfirma? (s \\ n)\n>>");
 	getchar();
@@ -747,7 +771,7 @@ int cancelaMatricula(Disciplina * disc, Aluno alunos[],Contador *contador)
 	do {
 		system("cls");
 		printf("Escolha os alunos que terao matriculas canceladas:\tqtd de alunos selecionados = %i\n\n", contaAlunos);
-		printf("#		Nome	RA\n");
+		printf("#       Nome	RA\n");
 		
 			for (i = 0; i < MAX_ALUNO; i++) {
 				if (alunos[i].empty == 0) {//false
@@ -761,7 +785,7 @@ int cancelaMatricula(Disciplina * disc, Aluno alunos[],Contador *contador)
 					}
 
 					if (alunos[i].empty == 0 && jaCadastrado != 1)
-						printf("%i	-	%s	%i\n", i, alunos[i].nome, alunos[i].ra);
+						printf("%-i------ %-s	%-i\n", i, alunos[i].nome, alunos[i].ra);
 
 				jaCadastrado = 0;
 				}
@@ -800,8 +824,8 @@ int cancelaMatricula(Disciplina * disc, Aluno alunos[],Contador *contador)
 	do {
 		jaCadastrado = 0;
 		system("cls");
-		printf("Escolha as disciplinas a matricular os alunos:\tqtd de disciplinas selecionadas = %i\n\n", contaDisc);
-		printf("#		Nome\n");
+		printf("Escolha as disciplinas a desmatricular os alunos:\tqtd de disciplinas selecionadas = %i\n\n", contaDisc);
+		printf("#        Nome\n");
 		for (i = 0; i < MAX_DISC; i++) {
 			
 			if (disc[i].empty == 0 ) {
@@ -813,7 +837,7 @@ int cancelaMatricula(Disciplina * disc, Aluno alunos[],Contador *contador)
 					}
 				}
 				if (disc[i].empty == 0 && jaCadastrado != 1)
-					printf("%i	-	%s\n", i, disc[i].nome);
+					printf("%-i-------- %-s\n", i, disc[i].nome);
 				jaCadastrado = 0;
 			}
 		}
@@ -852,11 +876,11 @@ int cancelaMatricula(Disciplina * disc, Aluno alunos[],Contador *contador)
 	system("cls");
 	printf("Sera efetuada o cancelamento da matricula deste(s) aluno(s):\n\n");
 	for (i = 0; i < contaAlunos; i++) {
-		printf("%s		%i\n", alunosCancela[i].nome, alunosCancela[i].ra);
+		printf("%-s		%-i\n", alunosCancela[i].nome, alunosCancela[i].ra);
 	}
 	printf("\nNessa(s) disciplinas(s)\n\n");
 	for (i = 0; i < contaDisc; i++) {
-		printf("%s\n", discCancela[i].nome);
+		printf("%-s\n", discCancela[i].nome);
 	}
 	printf("\nConfirma? (s \\ n)\n>>");
 	getchar();
@@ -888,16 +912,6 @@ int cancelaMatricula(Disciplina * disc, Aluno alunos[],Contador *contador)
 		}
 	}
 	return 1;
-
-
-
-
-
-
-
-
-
-	return 0;
 }
 
 int vinculaProf(Disciplina * disc,Professor profs[],Contador *contador)
@@ -923,12 +937,12 @@ int vinculaProf(Disciplina * disc,Professor profs[],Contador *contador)
 	do {
 		system("cls");
 		printf("Escolha o professor a vincular:\n\n");
-		printf("#		Nome	RP\n");
+		printf("#        Nome	RP\n");
 		for (i = 0; i < MAX_PROF; i++) {
 			if (profs[i].empty == 0) {//false
 
 				
-				printf("%i	-	%s	%i\n", i, profs[i].nome, profs[i].rp);
+				printf("%-i-------- %-s	%-i\n", i, profs[i].nome, profs[i].rp);
 			
 			}
 		}
@@ -953,7 +967,7 @@ int vinculaProf(Disciplina * disc,Professor profs[],Contador *contador)
 		jaCadastrado = 0;
 		system("cls");
 		printf("Escolha as disciplinas a vincular o professor:\tqtd de disciplinas selecionadas = %i\n\n", contaDisc);
-		printf("#		Nome\n");
+		printf("#		 Nome\n");
 		for (i = 0; i < MAX_DISC; i++) {
 			if (disc[i].empty == 0) {//false
 
@@ -964,7 +978,7 @@ int vinculaProf(Disciplina * disc,Professor profs[],Contador *contador)
 					}
 				}
 				if (disc[i].empty == 0 && jaCadastrado != 1)
-					printf("%i	-	%s\n", i, disc[i].nome);
+					printf("%-i-------- %-s\n", i, disc[i].nome);
 				jaCadastrado = 0;
 			}
 		}
@@ -1002,11 +1016,11 @@ int vinculaProf(Disciplina * disc,Professor profs[],Contador *contador)
 
 	system("cls");
 	printf("Sera efetuado o vinculo deste professor:\n\n");
-	printf("%s		%i\n", profMatricula.nome, profMatricula.rp);
+	printf("%-s----%-i\n", profMatricula.nome, profMatricula.rp);
 	
 	printf("\nNessa(s) disciplina(s)\n\n");
 	for (i = 0; i < contaDisc; i++) {
-		printf("%s\n", discMatricula[i].nome);
+		printf("%-s\n", discMatricula[i].nome);
 	}
 	printf("\nConfirma? (s \\ n)\n>>");
 	getchar();
@@ -1056,8 +1070,8 @@ int cancelaVinculo(Disciplina * disc,Professor profs[],Contador *contador)
 
 	do {
 		system("cls");
-		printf("Escolha os professores a desvincular:\n\n");
-		printf("#		Nome	RP\n");
+		printf("Escolha os professores a desvincular:\tProfs selecionandos=%i\n\n",contaProfs);
+		printf("#		 Nome	RP\n");
 		for (i = 0; i < MAX_PROF; i++) {
 			if (profs[i].empty == 0) {//false
 
@@ -1071,7 +1085,7 @@ int cancelaVinculo(Disciplina * disc,Professor profs[],Contador *contador)
 				}
 
 				if (profs[i].empty == 0 && jaCadastrado != 1)
-					printf("%i	-	%s	%i\n", i, profs[i].nome, profs[i].rp);
+					printf("%-i-------- %-s	%-i\n", i, profs[i].nome, profs[i].rp);
 				jaCadastrado = 0;
 
 			}
@@ -1097,7 +1111,7 @@ int cancelaVinculo(Disciplina * disc,Professor profs[],Contador *contador)
 			err = 0;
 		}
 
-		if (contaProfs == contador->qAlunos) {
+		if (contaProfs == contador->qProfs) {
 			break;
 		}
 		printf("Deseja selecionar mais professores? (s \\ n)\n>>");
@@ -1110,7 +1124,7 @@ int cancelaVinculo(Disciplina * disc,Professor profs[],Contador *contador)
 		jaCadastrado = 0;
 		system("cls");
 		printf("Escolha as disciplinas a vincular o professor:\tqtd de disciplinas selecionadas = %i\n\n", contaDisc);
-		printf("#		Nome\n");
+		printf("#		 Nome\n");
 		for (i = 0; i < MAX_DISC; i++) {
 			if (disc[i].empty == 0) {//false
 
@@ -1121,7 +1135,7 @@ int cancelaVinculo(Disciplina * disc,Professor profs[],Contador *contador)
 					}
 				}
 				if (disc[i].empty == 0 && jaCadastrado != 1)
-					printf("%i	-	%s\n", i, disc[i].nome);
+					printf("%-i-------- %-s\n", i, disc[i].nome);
 				jaCadastrado = 0;
 			}
 		}
@@ -1160,11 +1174,11 @@ int cancelaVinculo(Disciplina * disc,Professor profs[],Contador *contador)
 	system("cls");
 	printf("Sera cancelado o vinculo deste(s) professor(s):\n\n");
 	for (i = 0; i < contaProfs; i++) {
-		printf("%s		%i\n", profsCancela[i].nome, profsCancela[i].rp);
+		printf("%-s----%-i\n", profsCancela[i].nome, profsCancela[i].rp);
 	}
 	printf("\nNessa(s) disciplina(s)\n\n");
 	for (i = 0; i < contaDisc; i++) {
-		printf("%s\n", discCancela[i].nome);
+		printf("%-s\n", discCancela[i].nome);
 	}
 	printf("\nConfirma? (s \\ n)\n>>");
 	getchar();
