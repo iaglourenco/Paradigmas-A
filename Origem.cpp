@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define MAX_PROF 5
 #define MAX_ALUNO 5
@@ -35,7 +36,7 @@ typedef struct {
 
 Aluno cadastraAluno(Aluno alunos[], int posAluno, Contador *contador);//ok
 Professor cadastraProf(Professor profs[], int posProf, Contador *contador);//ok
-
+int hasLetter(char s[]);
 int matriculaAluno(Disciplina *disc, Aluno alunos[], Contador *contador);//ok
 int cancelaMatricula(Disciplina *disc,Aluno alunos[],Contador *contador);//ok
 int vinculaProf(Disciplina *disc,Professor profs[],Contador *contador);//falta testar
@@ -529,9 +530,26 @@ Aluno cadastraAluno(Aluno alunos[], int posAluno, Contador *contador) {
 
 	Aluno entryAluno;
 	int i;
-	printf("\nDigite o RA do aluno:\n>>");
-	getchar();
-	scanf("%i", &entryAluno.ra);
+	char buff[20];
+
+
+	do {
+		printf("\nDigite o RA do aluno: (SOMENTE NUMEROS)\n>>");
+		getchar();
+		scanf("%s", &buff);
+
+		if (hasLetter(buff) > 0) {
+			printf("\nSOMENTE NUMEROS!\n");
+			printf("Pressione qualquer tecla para digitar novamente...\n");
+			system("pause>nul");
+			system("cls");
+		}
+		else { 
+			entryAluno.ra = atoi(buff);
+			break; 
+		}
+
+	} while (1);
 
 	for (i = 0; i < MAX_ALUNO; i++) {
 
@@ -557,9 +575,30 @@ Professor cadastraProf(Professor profs[], int posProf, Contador *contador) {
 
 	Professor entryProf;
 	int i;
-	printf("\nDigite o RP do professor:\n>>");
-	getchar();
-	scanf("%i", &entryProf.rp);
+	char buff[20];
+	
+	do {
+		printf("\nDigite o RP do professor: (SOMENTE NUMEROS)\n>>");
+		getchar();
+		scanf("%s", &buff);
+	
+		if (hasLetter(buff) > 0) {
+			printf("\nSOMENTE NUMEROS!\n");
+			printf("Pressione qualquer tecla para digitar novamente...\n");
+			system("pause>nul");
+			system("cls");
+		}
+		else {
+			entryProf.rp = atoi(buff);
+			break;
+		}
+	
+	
+	
+	} while (1);
+
+
+
 
 	for (i = 0; i < MAX_PROF; i++) {
 
@@ -579,6 +618,19 @@ Professor cadastraProf(Professor profs[], int posProf, Contador *contador) {
 	contador->qProfs++;
 	return entryProf;
 
+}
+
+int hasLetter(char s[])
+{
+	int counter = 0;
+	int i;
+
+	for (i = 0; i < strlen(s); i++){
+		if (!isdigit(s[i]))//if it's not a number  
+			counter++;
+	}
+
+	return counter;//return how many non-digits have
 }
 
 int matriculaAluno(Disciplina *disc,Aluno alunos[], Contador *contador) {
@@ -914,8 +966,7 @@ int cancelaMatricula(Disciplina * disc, Aluno alunos[],Contador *contador)
 	return 1;
 }
 
-int vinculaProf(Disciplina * disc,Professor profs[],Contador *contador)
-{
+int vinculaProf(Disciplina * disc,Professor profs[],Contador *contador){
 	int i, opcao, contaProfs = 0, contaDisc = 0, j, jaCadastrado = 0;
 	char mais;
 	int err = 0;//sinaliza erros
