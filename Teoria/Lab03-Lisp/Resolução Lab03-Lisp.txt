@@ -1,0 +1,54 @@
+Resolução de exercicios propostos 
+
+Lista03 - Lab030Lisp.pdf
+
+
+1 - devolve o numero incrementado de 1
+
+
+2 - 
+	a) > 3
+	b) > 10
+	c) > error : erro de sintaxe
+	
+3 - 6, o interpretador identifica a função, xxx, e o parametro para a 
+mesma, xxx, que tem o mesmo nome, mas nao tem parametros 
+
+
+4 - (defun fat (x)
+		(if (zerop x)
+			1
+			(* x (fat (1- x)))
+		)
+	)
+	
+
+5 - (defun negativo (x)
+		(if (zerop x)
+			
+			
+		
+	
+	)
+	
+	
+	
+6 - (defun soma (x y)
+		(if (zerop y)
+			x
+			(soma (1+ x)(1- y)) 
+		)
+	
+	)
+	
+	
+7 - (defun mult (x y)
+
+		(if (zerop y)
+			x
+			(soma x(mult x (1- y)))
+		)
+	)
+	
+	
+	
