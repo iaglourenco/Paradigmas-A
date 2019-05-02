@@ -6,7 +6,7 @@
 	;;cdaar BD = professores
 
 ;;FINISHED - MATRICULAR,VINCULAR,CANCELAR-MATRICULA,REMOVER-VINCULO,ALUNOS?,PROFESSORES?,MATRICULADOS?,VINCULADOS?,CURSA?,MINISTRA?
-;;CONSERTAR ALGUNS ERROS DE STACK OVERFLOW NA REMOCAO DE VINCULO E MATRICULA --acho que consertei, falta verficar
+;;CONSERTAR ALGUNS ERROS DE STACK OVERFLOW NA REMOCAO DE VINCULO E MATRICULA --testes basicos feitos, farei mais alguns para ter certeza
 
 ;;Matricula cada um dos alunos na lista ALUNOS em  todas as disciplinas da lista DISCIPLINAS, na  TURMA indicada.
 (defun MATRICULAR (ALUNOS DISCIPLINAS TURMA BD) 
@@ -44,9 +44,9 @@
 
 	(if (eql TURMA 1)
 
-		(if (and (null BD) (null DISCIPLINAS))
+		(if (or (null BD) (null DISCIPLINAS))
 			nil
-			(if (null DISCIPLINAS)
+			(if (null DISCIPLINAS) 
 				(limpa-bd (cons(cons(cons (cons (caaaar BD)(cdaaar BD)) (cdaar BD))(cdar BD)) (CANCELAR-MATRICULA ALUNOS DISCIPLINAS TURMA (cdr BD))))
 			
 				(if (find (cdar BD) DISCIPLINAS) 
@@ -56,7 +56,7 @@
 			)
 		)
 		;;TURMA 2
-		(if (and (null BD) (null DISCIPLINAS))
+		(if (or (null BD) (null DISCIPLINAS))
 			nil
 			(if (null DISCIPLINAS)
 				(limpa-bd (cons(cons(cons (cons (caaaar BD)(cdaaar BD)) (cdaar BD))(cdar BD)) (CANCELAR-MATRICULA ALUNOS DISCIPLINAS TURMA (cdr BD))))
@@ -91,9 +91,9 @@
 (defun REMOVER-VINCULO (PROFESSORES DISCIPLINAS BD)
 
 
-	(if (and (null BD) (null DISCIPLINAS))
+	(if (or (null BD) (null DISCIPLINAS))
 			nil
-			(if (null DISCIPLINAS)
+			(if (or (null DISCIPLINAS) (null BD))
 				(limpa-bd(cons(cons(cons (cons (caaaar BD)(cdaaar BD)) (cdaar BD))(cdar BD)) (REMOVER-VINCULO PROFESSORES DISCIPLINAS (cdr BD))))
 		
 				(if (find (cdar BD) DISCIPLINAS) 
