@@ -4,9 +4,10 @@
 	;;caaaar BD = alunos da turma 1
 	;;cdaaar BD = alunos da turma 2
 	;;cdaar BD = professores
-
+	;;set-difference = Dada 2 listas, retorna uma lista que contem os elementos diferentes das mesmas
+	;;union = Dada 2 listas, retorna uma lista que contem os elementos das duas listas juntas sem os elementos repetidos entre elas
+	
 ;;FINISHED - MATRICULAR,VINCULAR,CANCELAR-MATRICULA,REMOVER-VINCULO,ALUNOS?,PROFESSORES?,MATRICULADOS?,VINCULADOS?,CURSA?,MINISTRA?
-;;CONSERTAR ALGUNS ERROS DE STACK OVERFLOW NA REMOCAO DE VINCULO E MATRICULA --testes basicos feitos, farei mais alguns para ter certeza
 
 ;;Matricula cada um dos alunos na lista ALUNOS em  todas as disciplinas da lista DISCIPLINAS, na  TURMA indicada.
 (defun MATRICULAR (ALUNOS DISCIPLINAS TURMA BD) 
@@ -15,7 +16,7 @@
 	
 		(if (and (null BD) (null DISCIPLINAS))
 			nil	
-			(if (find (cdar BD) DISCIPLINAS);;vejo se a disciplina do BD tem o mesmo nome de alguma e DISCIPLINAS
+			(if (find (cdar BD) DISCIPLINAS);;vejo se a disciplina do BD tem o mesmo nome de alguma em DISCIPLINAS
 				(cons(cons(cons (cons (union (caaaar BD) ALUNOS) (cdaaar BD)) (cdaar BD))(cdar BD)) (MATRICULAR ALUNOS (remove (cdar BD) DISCIPLINAS) TURMA (cdr BD)));;se tiver cadastro os alunos e removo a disciplina de DISCIPLINAS
 				(if (null (cdar BD));; se nao vejo se nao tem alguma disciplina e cadastro a nova e removo a discilpina de DISCIPLINAS
 				(cons (cons(cons (cons (union (caaaar BD) ALUNOS) (cdaaar BD)) (cdaar BD))(car DISCIPLINAS)) (MATRICULAR ALUNOS (remove (car DISCIPLINAS) DISCIPLINAS) TURMA (cdr BD)))
@@ -44,7 +45,8 @@
 
 	(if (eql TURMA 1)
 
-		(if (or (null BD) (null DISCIPLINAS))
+
+		(if (null BD)
 			nil
 			(if (null DISCIPLINAS) 
 				(limpa-bd (cons(cons(cons (cons (caaaar BD)(cdaaar BD)) (cdaar BD))(cdar BD)) (CANCELAR-MATRICULA ALUNOS DISCIPLINAS TURMA (cdr BD))))
@@ -56,7 +58,7 @@
 			)
 		)
 		;;TURMA 2
-		(if (or (null BD) (null DISCIPLINAS))
+		(if (null BD)
 			nil
 			(if (null DISCIPLINAS)
 				(limpa-bd (cons(cons(cons (cons (caaaar BD)(cdaaar BD)) (cdaar BD))(cdar BD)) (CANCELAR-MATRICULA ALUNOS DISCIPLINAS TURMA (cdr BD))))
@@ -91,9 +93,9 @@
 (defun REMOVER-VINCULO (PROFESSORES DISCIPLINAS BD)
 
 
-	(if (or (null BD) (null DISCIPLINAS))
+	(if (null BD)
 			nil
-			(if (or (null DISCIPLINAS) (null BD))
+			(if (null DISCIPLINAS)
 				(limpa-bd(cons(cons(cons (cons (caaaar BD)(cdaaar BD)) (cdaar BD))(cdar BD)) (REMOVER-VINCULO PROFESSORES DISCIPLINAS (cdr BD))))
 		
 				(if (find (cdar BD) DISCIPLINAS) 
