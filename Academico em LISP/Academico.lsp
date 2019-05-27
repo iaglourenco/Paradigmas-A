@@ -6,7 +6,6 @@
 	;;cdaar BD = professores
 
 ;;FINISHED - MATRICULAR,VINCULAR,CANCELAR-MATRICULA,REMOVER-VINCULO,ALUNOS?,PROFESSORES?,MATRICULADOS?,VINCULADOS?,CURSA?,MINISTRA?
-;;CONSERTAR ALGUNS ERROS DE STACK OVERFLOW NA REMOCAO DE VINCULO E MATRICULA --testes basicos feitos, farei mais alguns para ter certeza
 
 ;;Matricula cada um dos alunos na lista ALUNOS em  todas as disciplinas da lista DISCIPLINAS, na  TURMA indicada.
 (defun MATRICULAR (ALUNOS DISCIPLINAS TURMA BD) 
